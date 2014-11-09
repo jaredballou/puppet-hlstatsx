@@ -1,0 +1,14 @@
+{
+  "name": "jballou-hlstatsx",
+  "version": "0.0.1",
+  "author": "jballou",
+  "summary": "Install and configure HLStatsX",
+  "license": "Apache 2.0",
+  "source": "https://jballou@bitbucket.org/jballou/puppet-hlstatsx.git",
+  "issues_url": "https://jballou@bitbucket.org/jballou/puppet-hlstatsx.git",
+  "project_page": "http://jballou.com",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
