@@ -15,65 +15,56 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Manages the HLStatsX application
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module manages HLStatsX, a stat and log aggregator and interfacing tool
+used with a number of online games based on the Source engine. The module installs
+and provides defined types for managing installing, users, games, and servers.
 
 ## Setup
 
 ### What hlstatsx affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* HLStatsX installation directory
+* HLStatsX MySQL database/user/grants
+* HLStatsX Apache vhost
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+None
 
 ### Beginning with hlstatsx
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+Just using class { 'hlstatsx': } will install MySQL, Apache, download the
+application files, set up the database, import the standard MySQL schema and
+default data, and create an admin user. Obviously, for anything past testing
+the admin_pass and db_pass variables should be set to non-standard values.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+* class { 'hlstatsx': }
+Base class that installs and configures an instance of HLStatsX
+* hlstatsx::game
+Manages a Game in the database
+* hlstatsx::server
+Manages a Server in the database
+* hlstatsx::user
+Manages a User in the database
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
-
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Only tested on CenOS 6.5
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Feel free to fork, edit, and send back pull requests, I am pretty new to publishing
+modules and appreciate any help or feedback.
 
 ## Release Notes/Contributors/Etc **Optional**
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Initial release, works but might be rough, be careful if you use this over an existing
+HLStatsX installation.
