@@ -35,7 +35,21 @@
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class hlstatsx {
+class hlstatsx(
+  $source_type = 'git',
+  $source_url  = 'git@github.com:jaredballou/insurgency-hlstatsx.git',
+  $user        = 'insserver',
+  $group       = 'insserver',
+  $rootpath    = '/opt/hlstatsx-community-edition',
+) {
+  require apache
+  require mysql
+  Vcsrepo { owner => $user, group => $group, ensure => present, provider => git, revision => 'master', }
 
+  exec { 'create-hlstatsx-rootpath': command => "mkdir -p \"${rootpath}\"", creates => $rootpath, } ->
+  file { $rootpath: ensure => directory, owner => $user, group => $group, mode => '0775', } ->
+  vcsrepo { $rootpath:
+    source   => $source_url,
+  }
 
 }
