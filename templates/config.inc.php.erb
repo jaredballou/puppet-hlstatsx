@@ -1,0 +1,20 @@
+<?php
+error_reporting(E_ALL);
+ini_set("memory_limit", "1024M");
+ini_set("max_execution_time", "0");
+
+define('DB_HOST',	'<%= @db_host %>');
+define('DB_USER',	'<%= @db_user %>');
+define('DB_PASS',	'<%= @db_pass %>');
+define('DB_NAME',	'<%= @db_name %>');
+define('HLXCE_WEB',	'<%= @rootpath %>/web');
+define('HUD_URL',	'<%= @url %>');
+define('OUTPUT_SIZE',	'large');
+
+define('DB_PREFIX',	'<%= @db_prefix %>');
+define('KILL_LIMIT',	10000);
+define('DEBUG', 1);
+
+// No need to change this unless you are on really low disk.
+define('CACHE_DIR',	dirname(__FILE__) . '/cache');
+
