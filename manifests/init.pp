@@ -129,7 +129,6 @@ class hlstatsx(
   #Assemble the complete URL, only append the port if it's non-standard
   if ($web_port and (($web_port != 80 and $web_proto == 'http') or ($web_port != 443 and $web_proto == 'https'))) {
     $url = "${web_proto}://${web_server}:${web_port}/${web_path}"
-    Apache::Vhost { port => $web_port, }
     $web_real_port = $web_port
   } else {
     $url = "${web_proto}://${web_server}/${web_path}"
@@ -143,6 +142,7 @@ class hlstatsx(
   file { $rootpath: ensure => directory, mode => '0775', } ->
   #Apache vhost
   apache::vhost { $web_server:
+    port => $web_real_port,
     docroot       => "${rootpath}/web",
     docroot_group => $group,
     docroot_owner => $user,
